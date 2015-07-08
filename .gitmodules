@@ -1,0 +1,9 @@
+[submodule "stm32f4"]
+	path = stm32f4
+	url = https://github.com/erikvanhamme/stm32f4.git
+[submodule "ecpp"]
+	path = ecpp
+	url = https://github.com/erikvanhamme/ecpp.git
+[submodule "buildscripts"]
+	path = buildscripts
+	url = https://github.com/erikvanhamme/buildscripts.git
