@@ -58,7 +58,8 @@ stm32f4/src/syscalls.c
 stm32f4/module.mk
 Makefile
 module.mk
-inc/gpioport.h
-inc/gpiopin.h
-inc/rcc.h
-inc/stm32types.h
+ecppstm32/inc/gpioport.h
+ecppstm32/inc/gpiopin.h
+ecppstm32/inc/rcc.h
+ecppstm32/inc/stm32types.h
+ecppstm32/module.mk
