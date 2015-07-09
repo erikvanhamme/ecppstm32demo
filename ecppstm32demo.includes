@@ -1,6 +1,5 @@
-ecpp/inc/control
-ecpp/inc/mem
-ecpp/inc/util
+ecpp/inc
 stm32f4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 stm32f4/Drivers/CMSIS/Include
 inc
+ecppstm32/inc
