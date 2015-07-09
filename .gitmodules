@@ -7,3 +7,6 @@
 [submodule "buildscripts"]
 	path = buildscripts
 	url = https://github.com/erikvanhamme/buildscripts.git
+[submodule "ecppstm32"]
+	path = ecppstm32
+	url = https://github.com/erikvanhamme/ecppstm32

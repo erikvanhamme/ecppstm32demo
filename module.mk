@@ -16,7 +16,4 @@ sources += \
     src/main.cpp \
 
 headers += \
-    inc/gpiopin.h \
-    inc/gpioport.h \
-    inc/rcc.h \
-    inc/stm32types.h \
+

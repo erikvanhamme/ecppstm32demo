@@ -13,9 +13,9 @@
 # limitations under the License.
 
 project := ecppstm32demo
-buildmode ?= debug
+buildmode ?= release
 
-module_dirs := . ecpp stm32f4
+module_dirs := . ecpp ecppstm32 stm32f4
 
 chip := stm32f407
 
