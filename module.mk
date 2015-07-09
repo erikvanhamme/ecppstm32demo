@@ -13,7 +13,10 @@
 # limitations under the License.
 
 sources += \
-	src/main.cpp \
+    src/main.cpp \
 
 headers += \
-
+    inc/gpiopin.h \
+    inc/gpioport.h \
+    inc/rcc.h \
+    inc/stm32types.h \

@@ -14,7 +14,41 @@
  * limitations under the License.
  */
 
+#include "gpiopin.h"
+#include "gpioport.h"
+#include "rcc.h"
+#include "stm32types.h"
+
+#include <cstdint>
+
+using namespace ecpp::stm32;
+
+typedef GpioPort<gpioport::pd> ledPort;
+typedef GpioPort<gpioport::pa> buttonPort;
+
+typedef GpioPin<gpioport::pd, gpiopin::p12> led1Pin;
+typedef GpioPin<gpioport::pd, gpiopin::p13> led2Pin;
+typedef GpioPin<gpioport::pd, gpiopin::p14> led3Pin;
+typedef GpioPin<gpioport::pd, gpiopin::p15> led4Pin;
+typedef GpioPin<gpioport::pa, gpiopin::p0> buttonPin;
+
 int main() {
+
+    ledPort::enable();
+    buttonPort::enable();
+
+    led1Pin::configure(gpiomode::output_pushpull);
+    led2Pin::configure(gpiomode::output_pushpull);
+    led3Pin::configure(gpiomode::output_pushpull);
+    led4Pin::configure(gpiomode::output_pushpull);
+
+    ledPort::high<gpiopin::p12, gpiopin::p13, gpiopin::p14, gpiopin::p15>();
+
 	while(true) {
+        if (buttonPin::value()) {
+            led4Pin::high();
+        } else {
+            led4Pin::low();
+        }
 	}
 }
