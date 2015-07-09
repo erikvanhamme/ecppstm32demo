@@ -4,14 +4,14 @@ buildscripts/stm32project.mk
 ecpp/inc/pid.h
 ecpp/inc/allocator.h
 ecpp/inc/factory.h
-ecpp/inc/byteutils.h
+ecpp/inc/utils.h
 ecpp/inc/endianness.h
 ecpp/inc/fraction.h
 ecpp/inc/range.h
 ecpp/src/allocator.cpp
 ecpp/src/assertsafe.cpp
 ecpp/src/throwsafe.cpp
-ecpp/src/byteutils.cpp
+ecpp/src/utils.cpp
 ecpp/module.mk
 src/main.cpp
 stm32f4/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xc.h
