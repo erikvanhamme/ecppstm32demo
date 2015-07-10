@@ -18,6 +18,7 @@
 #include "gpiopin.h"
 #include "gpioport.h"
 #include "stm32types.h"
+#include "utils.h"
 
 #include <cstdint>
 
@@ -58,7 +59,7 @@ int main() {
     led3Pin::configure(gpiomode::output_pushpull);
     led4Pin::configure(gpiomode::output_pushpull);
 
-    ledPort::high<gpiopin::p12, gpiopin::p13, gpiopin::p14, gpiopin::p15>();
+    ledPort::high(gpiopin::p12 | gpiopin::p13 | gpiopin::p14 | gpiopin::p15);
 
     tPin::configure(gpiomode::output_pushpull);
 
