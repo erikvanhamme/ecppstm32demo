@@ -23,14 +23,27 @@
 
 using namespace ecpp::stm32;
 
-typedef GpioPort<gpioport::pd> ledPort;
+// button is on PA0 for both boards
 typedef GpioPort<gpioport::pa> buttonPort;
+typedef GpioPin<gpioport::pa, gpiopin::p0> buttonPin;
+
+#ifdef stm32f4
+typedef GpioPort<gpioport::pd> ledPort;
 
 typedef GpioPin<gpioport::pd, gpiopin::p12> led1Pin;
 typedef GpioPin<gpioport::pd, gpiopin::p13> led2Pin;
 typedef GpioPin<gpioport::pd, gpiopin::p14> led3Pin;
 typedef GpioPin<gpioport::pd, gpiopin::p15> led4Pin;
-typedef GpioPin<gpioport::pa, gpiopin::p0> buttonPin;
+#endif
+
+#ifdef stm32f3
+typedef GpioPort<gpioport::pe> ledPort;
+
+typedef GpioPin<gpioport::pe, gpiopin::p12> led1Pin;
+typedef GpioPin<gpioport::pe, gpiopin::p13> led2Pin;
+typedef GpioPin<gpioport::pe, gpiopin::p14> led3Pin;
+typedef GpioPin<gpioport::pe, gpiopin::p15> led4Pin;
+#endif
 
 int main() {
 

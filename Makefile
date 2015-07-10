@@ -12,10 +12,43 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# -----------------------------------------------------------------------------
+# Select target board by uncommenting the appropriate line.
+# -----------------------------------------------------------------------------
+#board := stm32f3discovery
+board := stm32f4discovery
+
+# -----------------------------------------------------------------------------
+# Common settings.
+# -----------------------------------------------------------------------------
 project := ecppstm32demo
 buildmode ?= release
 
-module_dirs := . ecpp ecppstm32 stm32f4
+module_dirs := . ecpp ecppstm32
+
+# -----------------------------------------------------------------------------
+# Settings for stm32f3discovery board.
+# -----------------------------------------------------------------------------
+ifeq ($(board),stm32f3discovery)
+module_dirs += stm32f3
+
+chip := stm32f303xc
+
+oocdcfgs := -f "interface/stlink-v2.cfg" -f "target/stm32f3x_stlink.cfg" 
+oocdcmds = -c "init" \
+	-c "reset halt" \
+	-c "flash erase_sector 0 0 4" \
+	-c "flash write_bank 0 $(binfile) 0" \
+	-c "reset run" \
+	-c "shutdown"
+
+endif
+
+# -----------------------------------------------------------------------------
+# Settings for stm32f4discovery board.
+# -----------------------------------------------------------------------------
+ifeq ($(board),stm32f4discovery)
+module_dirs += stm32f4
 
 chip := stm32f407
 
@@ -27,4 +60,9 @@ oocdcmds = -c "init" \
 	-c "reset run" \
 	-c "shutdown"
 
+endif
+
+# -----------------------------------------------------------------------------
+# Import make rules.
+# -----------------------------------------------------------------------------
 include buildscripts/stm32project.mk

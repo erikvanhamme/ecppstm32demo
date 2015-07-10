@@ -10,3 +10,6 @@
 [submodule "ecppstm32"]
 	path = ecppstm32
 	url = https://github.com/erikvanhamme/ecppstm32
+[submodule "stm32f3"]
+	path = stm32f3
+	url = https://github.com/erikvanhamme/stm32f3
