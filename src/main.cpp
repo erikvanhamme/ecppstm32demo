@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-#include "basictimer.h"
 #include "gpio.h"
-#include "stm32types.h"
+#include "timer.h"
 #include "utils.h"
 
 #include <cstdint>
