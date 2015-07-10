@@ -44,7 +44,6 @@ typedef GpioPin<gpioport::pe, gpiopin::p14> led3Pin;
 typedef GpioPin<gpioport::pe, gpiopin::p15> led4Pin;
 #endif
 
-typedef GpioPin<gpioport::pd, gpiopin::p11> tPin;
 typedef BasicTimer<basictimer::tim6> tTim;
 
 int main() {
@@ -58,8 +57,6 @@ int main() {
     led4Pin::configure(gpiomode::output_pushpull);
 
     ledPort::high(gpiopin::p12 | gpiopin::p13 | gpiopin::p14 | gpiopin::p15);
-
-    tPin::configure(gpiomode::output_pushpull);
 
     tTim::enable(); // clock start
     tTim::configure(25000u, (SystemCoreClock / 50000) - 1); // 1000u period
@@ -79,7 +76,6 @@ int main() {
         if (tTim::isUpdateInterruptFlag()) {
             tTim::clearUpdateInterruptFlag();
 
-            tPin::toggle();
             led1Pin::toggle();
         }
 	}
