@@ -15,8 +15,7 @@
  */
 
 #include "basictimer.h"
-#include "gpiopin.h"
-#include "gpioport.h"
+#include "gpio.h"
 #include "stm32types.h"
 #include "utils.h"
 
