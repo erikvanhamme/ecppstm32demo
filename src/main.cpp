@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
+#include "basictimer.h"
 #include "gpiopin.h"
 #include "gpioport.h"
-#include "rcc.h"
 #include "stm32types.h"
 
 #include <cstdint>
@@ -45,6 +45,9 @@ typedef GpioPin<gpioport::pe, gpiopin::p14> led3Pin;
 typedef GpioPin<gpioport::pe, gpiopin::p15> led4Pin;
 #endif
 
+typedef GpioPin<gpioport::pd, gpiopin::p11> tPin;
+typedef BasicTimer<basictimer::tim6> tTim;
+
 int main() {
 
     ledPort::enable();
@@ -57,11 +60,28 @@ int main() {
 
     ledPort::high<gpiopin::p12, gpiopin::p13, gpiopin::p14, gpiopin::p15>();
 
+    tPin::configure(gpiomode::output_pushpull);
+
+    tTim::enable(); // clock start
+    tTim::configure(25000u, (SystemCoreClock / 50000) - 1); // 1000u period
+    tTim::setUpdateInterruptEvent(true); // we want interrupts
+    tTim::setPeriodBuffered(true);
+    tTim::start(); // start counter
+
 	while(true) {
         if (buttonPin::value()) {
             led4Pin::high();
+            tTim::updatePeriod(2500);
         } else {
             led4Pin::low();
+            tTim::updatePeriod(25000);
+        }
+
+        if (tTim::isUpdateInterruptFlag()) {
+            tTim::clearUpdateInterruptFlag();
+
+            tPin::toggle();
+            led1Pin::toggle();
         }
 	}
 }
