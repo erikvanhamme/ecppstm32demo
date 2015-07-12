@@ -15,8 +15,8 @@
 # -----------------------------------------------------------------------------
 # Select target board by uncommenting the appropriate line.
 # -----------------------------------------------------------------------------
-board := stm32f3discovery
-#board := stm32f4discovery
+#board := stm32f3discovery
+board := stm32f4discovery
 
 # -----------------------------------------------------------------------------
 # Common settings.

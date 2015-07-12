@@ -44,7 +44,7 @@ typedef GpioPin<gpioport::pe, gpiopin::p14> led3Pin;
 typedef GpioPin<gpioport::pe, gpiopin::p15> led4Pin;
 #endif
 
-typedef BasicTimer<basictimer::tim6> tTim;
+typedef Timer<timer_e::tim6> tTim;
 
 int main() {
 
@@ -60,7 +60,11 @@ int main() {
 
     tTim::enable(); // clock start
     tTim::configure(25000u, (SystemCoreClock / 50000) - 1); // 1000u period
-    tTim::setUpdateInterruptEvent(true); // we want interrupts
+
+    // Both ways work, second way is preferred, but code completion may not work (Qt creator).
+    tTim::enableIrq(irqen::timer_basic_e::update);
+    // tTim::enableIrq(tTim::irqen_e::update);
+
     tTim::setPeriodBuffered(true);
     tTim::start(); // start counter
 
@@ -73,8 +77,8 @@ int main() {
             tTim::updatePeriod(25000);
         }
 
-        if (tTim::isUpdateInterruptFlag()) {
-            tTim::clearUpdateInterruptFlag();
+        if (tTim::isSet(tTim::irqflag_e::update)) {
+            tTim::clear(tTim::irqflag_e::update);
 
             led1Pin::toggle();
         }
