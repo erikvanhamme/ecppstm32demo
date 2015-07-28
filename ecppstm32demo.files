@@ -27,3 +27,5 @@ ecppstm32/inc/timer.h
 ecppstm32/inc/gpio.h
 ecppstm32/inc/stm32_types.h
 ecppstm32/inc/stm32_traits.h
+ecpp/inc/poolallocator.h
+ecpp/src/poolallocator.cpp
