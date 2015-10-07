@@ -34,6 +34,10 @@ module_dirs += stm32f3
 
 chip := stm32f303xc
 
+defines += -Dstm32f3 -DSTM32F303xC
+
+arch := -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16
+
 oocdcfgs := -f "interface/stlink-v2.cfg" -f "target/stm32f3x_stlink.cfg" 
 oocdcmds = -c "init" \
 	-c "reset halt" \
@@ -50,7 +54,11 @@ endif
 ifeq ($(board),stm32f4discovery)
 module_dirs += stm32f4
 
-chip := stm32f407
+chip := stm32f407xx
+
+defines += -Dstm32f4 -DSTM32F407xx
+
+arch := -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16
 
 oocdcfgs := -f "interface/stlink-v2.cfg" -f "target/stm32f4x_stlink.cfg" 
 oocdcmds = -c "init" \
